@@ -2,12 +2,43 @@
 const navBar = document.querySelector('.nav-bar');
 const navLinks = navBar.querySelectorAll('a');
 const contact = navBar.querySelector('.contact a');
+const mouse = document.querySelector('.cursor');
+const mouseText = mouse.querySelector('.cursor-text');
+const burger = document.querySelector('.burger');
 let controller;
 let slideScene;
 let pageScene;
 let detailScene;
 
+// Event Listeners
+window.addEventListener('mousemove', cursor);
+window.addEventListener('mouseover', activeCursor);
+
 // Functions
+function cursor(e) {
+	mouse.style.left = e.pageX + 'px';
+	mouse.style.top = e.pageY + 'px';
+}
+
+function activeCursor(e) {
+	const item = e.target;
+	if ((item.id === 'logo') | item.classList.contains('burger')) {
+		mouse.classList.add('nav-active');
+	} else {
+		mouse.classList.remove('nav-active');
+	}
+
+	if (item.classList.contains('explore')) {
+		mouse.classList.add('explore-active');
+		mouseText.innerText = 'Tap';
+		gsap.to('title-swipe', 1, { y: '0%' });
+	} else {
+		mouse.classList.remove('explore-active');
+		mouseText.innerText = '';
+		gsap.to('title-swipe', 1, { y: '100%' });
+	}
+}
+
 function changeBackground() {
 	navLinks.forEach((link, index) => {
 		link.addEventListener('mouseover', () => {

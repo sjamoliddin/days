@@ -29,15 +29,21 @@ body::-webkit-scrollbar-thumb {
 
 .nav-header {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
+	color: #fff;
+	font-size: 1rem;
+	min-height: 10vh;
 	width: 80%;
-	margin: 2rem auto;
+	margin: auto;
+	padding: 2rem 0;
+	z-index: 2;
+	position: relative;
 }
 
 #logo {
-	color: #fff;
 	font-family: 'Abril Fatface', sans-serif;
+	color: #fff;
 }
 
 .burger {
@@ -46,10 +52,10 @@ body::-webkit-scrollbar-thumb {
 
 .line1,
 .line2 {
-	background-color: #fff;
 	width: 3rem;
 	height: 0.2rem;
 	margin: 0.5rem;
+	background: #fff;
 	pointer-events: none;
 }
 
@@ -112,7 +118,8 @@ body::-webkit-scrollbar-thumb {
 	align-items: center;
 	justify-content: space-between;
 	width: 80%;
-	margin: 3rem auto;
+	height: 100vh;
+	margin: auto;
 }
 
 .hero-img,
@@ -126,6 +133,7 @@ body::-webkit-scrollbar-thumb {
 .hero-img img {
 	width: 100%;
 	height: 100%;
+	object-fit: cover;
 }
 
 .hero-desc {
@@ -135,6 +143,9 @@ body::-webkit-scrollbar-thumb {
 	align-items: flex-start;
 	flex-direction: column;
 	margin-left: 3rem;
+	flex: 1;
+	flex-basis: 25rem;
+	position: relative;
 }
 
 .title {
@@ -153,7 +164,7 @@ body::-webkit-scrollbar-thumb {
 	margin-bottom: 1rem;
 }
 
-.hero-desc a {
+.explore {
 	text-decoration: none;
 	font-family: inherit;
 	font-size: 1.2rem;
@@ -161,6 +172,7 @@ body::-webkit-scrollbar-thumb {
 	border: 1px solid #fff;
 	color: #fff;
 	padding: 1rem 2rem;
+	background: none;
 }
 
 .mountain-span {
@@ -183,4 +195,42 @@ body::-webkit-scrollbar-thumb {
 	top: -15%;
 	left: 0;
 	background: #17181a;
+}
+
+.scrollmagic-pin-spacer {
+	position: static !important;
+}
+
+/* ===== Cursor ===== */
+.cursor {
+	width: 3rem;
+	height: 3rem;
+	position: absolute;
+	border: 2px solid #fff;
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+	pointer-events: none;
+	transition: all 0.5s ease-in-out;
+	transition-property: background, transform;
+	transform-origin: 75% 75%;
+}
+
+.cursor.nav-active {
+	background: rgb(86, 124, 228);
+	transform: scale(2.5);
+	z-index: -1;
+}
+
+.cursor.explore-active {
+	background: #fff;
+	transform: scale(2.5);
+}
+
+.cursor p {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 0.6rem;
+	color: #000;
 }
