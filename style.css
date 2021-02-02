@@ -66,8 +66,8 @@ body::-webkit-scrollbar-thumb {
 	left: 0;
 	z-index: 1;
 	opacity: 1;
-	/* clip-path: circle(50px at 100% -10%); */
-	/* -webkit-clip-path: circle(50px at 100% -10%); */
+	clip-path: circle(50px at 100% -10%);
+	-webkit-clip-path: circle(50px at 100% -10%);
 	transition: background 0.5s ease-in-out;
 }
 
@@ -105,6 +105,64 @@ body::-webkit-scrollbar-thumb {
 	line-height: 1;
 }
 
+/* ===== Main Content ===== */
+
+.slide {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 80%;
+	margin: 3rem auto;
+}
+
+.hero-img,
+.hero-desc {
+	position: relative;
+	flex: 1;
+	flex-basis: 25rem;
+	overflow: hidden;
+}
+
+.hero-img img {
+	width: 100%;
+	height: 100%;
+}
+
+.hero-desc {
+	background-color: #17181a;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-direction: column;
+	margin-left: 3rem;
+}
+
+.title {
+	position: relative;
+	overflow: hidden;
+}
+.hero-desc h2 {
+	font-family: 'Abril Fatface';
+	font-size: 4rem;
+	margin-bottom: 1.5rem;
+}
+
+.hero-desc p {
+	font-size: 1.2rem;
+	line-height: 1.5;
+	margin-bottom: 1rem;
+}
+
+.hero-desc a {
+	text-decoration: none;
+	font-family: inherit;
+	font-size: 1.2rem;
+	cursor: pointer;
+	border: 1px solid #fff;
+	color: #fff;
+	padding: 1rem 2rem;
+}
+
 .mountain-span {
 	color: rgb(86, 124, 228);
 }
@@ -115,4 +173,14 @@ body::-webkit-scrollbar-thumb {
 
 .fashion-span {
 	color: rgb(225, 139, 93);
+}
+
+.reveal-text,
+.reveal-img {
+	width: 100%;
+	height: 150%;
+	position: absolute;
+	top: -15%;
+	left: 0;
+	background: #17181a;
 }
