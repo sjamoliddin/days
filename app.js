@@ -70,6 +70,40 @@ function animateSlides() {
 
 		// animate nav-header
 		slideTimeline.fromTo(nav, { y: '-200%' }, { y: '0%' }, '-=1');
+
+		// init controller
+		controller = new ScrollMagic.Controller();
+
+		// create a slide scene
+		slideScene = new ScrollMagic.Scene({
+			triggerElement: slide,
+			triggerHook: 0.25,
+			reverse: false,
+		})
+			.setTween(slideTimeline)
+			.addTo(controller);
+
+		// new animation, new scene
+		const pageTimeline = gsap.timeline();
+		let nextSlide = slides.length - 1 === index ? 'end' : slides[index + 1];
+
+		pageTimeline.fromTo(nextSlide, 1, { y: '0%' }, { y: '50%' });
+		pageTimeline.fromTo(
+			slide,
+			1,
+			{ opacity: 1, scale: 1 },
+			{ opacity: 0, scale: 0.5 },
+		);
+		pageTimeline.fromTo(nextSlide, 1, { y: '50%' }, { y: '0%' }, '-=0.3');
+
+		pageScene = new ScrollMagic.Scene({
+			triggerElement: slide,
+			duration: '100%',
+			triggerHook: 0,
+		})
+			.setPin(slide, { pushFollowers: false })
+			.setTween(pageTimeline)
+			.addTo(controller);
 	});
 }
 
