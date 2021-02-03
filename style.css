@@ -256,3 +256,67 @@ body::-webkit-scrollbar-thumb {
 	font-size: 0.6rem;
 	color: #000;
 }
+
+/* ===== Fashion Page =====  */
+
+.detail-slide {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	width: 80%;
+	min-height: 90vh;
+	margin: 5rem auto 0;
+	padding: 2rem 0;
+	flex-wrap: wrap;
+}
+
+.fashion-text {
+	flex: 1;
+	flex-basis: 25rem;
+	overflow: hidden;
+	margin-top: 5rem;
+}
+
+.fashion-text h1 {
+	font-size: 6rem;
+	padding: 2rem 0;
+}
+
+.fashion1 h1 {
+	color: rgb(225, 139, 93);
+}
+
+.fashion2 h1 {
+	color: rgb(86, 124, 228);
+}
+
+.fashion3 h1 {
+	color: #424b5e;
+}
+
+.fashion-text p {
+	font-size: 1.6rem;
+	line-height: 1.5;
+	padding: 2rem 2rem 0 0;
+	margin-bottom: 10rem;
+}
+
+.fashion-img {
+	flex-basis: 30rem;
+	height: 90vh;
+}
+
+.fashion-img img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+.fashion-nr {
+	position: absolute;
+	left: 0%;
+	bottom: 15%;
+	font-size: 15rem;
+	opacity: 0.1;
+}
