@@ -263,7 +263,8 @@ body::-webkit-scrollbar-thumb {
 
 /* ===== Fashion Page =====  */
 
-.detail-slide {
+.detail-slide,
+.hiking-slide {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -449,6 +450,7 @@ body::-webkit-scrollbar-thumb {
 
 .hiking2 h1 {
 	color: rgb(97, 160, 116);
+	margin-left: 2rem;
 }
 
 .hiking3 h1 {

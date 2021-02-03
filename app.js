@@ -10,6 +10,8 @@ let slideScene;
 let pageScene;
 let detailScene;
 let mountainScene;
+let hikingScene;
+let hikingPageScene;
 
 // Event Listeners
 window.addEventListener('mousemove', cursor);
@@ -239,6 +241,54 @@ function animateImages() {
 		.addTo(controller);
 }
 
+// hiking page animation
+function hikingAnimation() {
+	controller = new ScrollMagic.Controller();
+	const slides = document.querySelectorAll('.hiking-slide');
+
+	slides.forEach((slide, index, slides) => {
+		const revealImg = slide.querySelector('.reveal-img');
+		const img = slide.querySelector('img');
+		const revealText = slide.querySelector('.reveal-text');
+		const slideTimeline = gsap.timeline({
+			defaults: { duration: 1, ease: 'power2.inOut' },
+		});
+
+		slideTimeline.fromTo(revealText, { x: '0%' }, { x: '100%' });
+		slideTimeline.fromTo(revealImg, { x: '0%' }, { x: '100%' }, '-=0.7');
+
+		hikingScene = new ScrollMagic.Scene({
+			triggerElement: slide,
+			triggerHook: 0,
+			reverse: false,
+		})
+			.setTween(slideTimeline)
+			.addTo(controller);
+
+		// new animation, new scene
+		const pageTimeline = gsap.timeline();
+		let nextSlide = slides.length - 1 === index ? 'end' : slides[index + 1];
+
+		pageTimeline.fromTo(nextSlide, 1, { y: '0%' }, { y: '50%' });
+		pageTimeline.fromTo(
+			slide,
+			1,
+			{ opacity: 1, scale: 1 },
+			{ opacity: 0, scale: 0.5 },
+		);
+		pageTimeline.fromTo(nextSlide, 1, { y: '50%' }, { y: '0%' }, '-=0.3');
+
+		hikingPageScene = new ScrollMagic.Scene({
+			triggerElement: slide,
+			duration: '100%',
+			triggerHook: 0,
+		})
+			.setPin(slide, { pushFollowers: false })
+			.setTween(pageTimeline)
+			.addTo(controller);
+	});
+}
+
 barba.init({
 	views: [
 		{
@@ -270,6 +320,17 @@ barba.init({
 			beforeLeave() {
 				controller.destroy();
 				mountainScene.destroy();
+			},
+		},
+		{
+			namespace: 'hiking',
+			beforeEnter() {
+				hikingAnimation();
+			},
+			beforeLeave() {
+				controller.destroy();
+				hikingScene.destroy();
+				hikingPageScene.destroy();
 			},
 		},
 	],
