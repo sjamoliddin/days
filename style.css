@@ -427,3 +427,43 @@ body::-webkit-scrollbar-thumb {
 	height: 100%;
 	background-color: #17181a;
 }
+
+/* ===== Hiking Page ===== */
+
+.hiking-text {
+	flex-basis: 20rem;
+	flex: 1;
+	position: relative;
+}
+
+.hiking-text h1 {
+	font-size: 5rem;
+	font-weight: 900;
+	padding: 1rem;
+	text-shadow: 2px 2px #000;
+}
+
+.hiking1 h1 {
+	color: rgb(225, 139, 93);
+}
+
+.hiking2 h1 {
+	color: rgb(97, 160, 116);
+}
+
+.hiking3 h1 {
+	color: rgb(89, 120, 204);
+}
+
+.hiking-img {
+	flex-basis: 30rem;
+	flex: 1;
+	height: 90vh;
+	position: relative;
+}
+
+.hiking-img img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}

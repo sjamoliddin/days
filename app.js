@@ -267,6 +267,10 @@ barba.init({
 			beforeEnter() {
 				animateImages();
 			},
+			beforeLeave() {
+				controller.destroy();
+				mountainScene.destroy();
+			},
 		},
 	],
 });
