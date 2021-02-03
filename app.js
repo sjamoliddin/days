@@ -47,12 +47,14 @@ function navToggle(e) {
 		gsap.to('.line2', 0.5, { y: '-5', rotate: '-45', background: '#000' });
 		gsap.to('#logo', 1, { color: '#000' });
 		gsap.to(navBar, 1, { clipPath: 'circle(2500px at 100% -10%)' });
+		document.body.classList.add('hide');
 	} else {
 		e.target.classList.remove('active');
 		gsap.to('.line1', 0.5, { y: '0', rotate: '0', background: '#fff' });
 		gsap.to('.line2', 0.5, { y: '0', rotate: '0', background: '#fff' });
 		gsap.to('#logo', 1, { color: '#fff' });
 		gsap.to(navBar, 1, { clipPath: 'circle(50px at 100% -10%)' });
+		document.body.classList.remove('hide');
 	}
 }
 
@@ -165,5 +167,61 @@ function animateSlides() {
 	});
 }
 
+function detailAnimation() {
+	controller = new ScrollMagic.Controller();
+	const slides = document.querySelectorAll('.detail-slide');
+
+	slides.forEach((slide, index, slides) => {
+		const slideTimeline = gsap.timeline({ defaults: { duration: 1 } });
+		let nextSlide = slides.length - 1 === index ? 'end' : slides[index + 1];
+		const nextImg = nextSlide.querySelector('img');
+
+		slideTimeline.fromTo(nextSlide, { y: '0%' }, { y: '10%' });
+		slideTimeline.fromTo(slide, { opacity: '1' }, { opacity: '0' });
+		slideTimeline.fromTo(
+			nextSlide,
+			{ opacity: '0' },
+			{ opacity: '1' },
+			'-=2.1',
+		);
+		slideTimeline.fromTo(nextImg, { x: '50%' }, { x: '0%' });
+		slideTimeline.fromTo(nextSlide, { y: '0%' }, { y: '-10%' });
+
+		detailScene = new ScrollMagic.Scene({
+			triggerElement: slide,
+			duration: '100%',
+			triggerHook: 0,
+		})
+			.setPin(slide, { pushFollowers: false })
+			.setTween(slideTimeline)
+			.addTo(controller);
+	});
+}
+
+barba.init({
+	views: [
+		{
+			namespace: 'home',
+			beforeEnter() {
+				animateSlides();
+			},
+			beforeLeave() {
+				controller.destroy();
+				pageScene.destroy();
+				slideScene.destroy();
+			},
+		},
+		{
+			namespace: 'fashion',
+			beforeEnter() {
+				detailAnimation();
+			},
+			beforeLeave() {
+				controller.destroy();
+				detailScene.destroy();
+			},
+		},
+	],
+});
+
 changeBackground();
-animateSlides();
