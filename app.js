@@ -9,6 +9,7 @@ let controller;
 let slideScene;
 let pageScene;
 let detailScene;
+let mountainScene;
 
 // Event Listeners
 window.addEventListener('mousemove', cursor);
@@ -106,6 +107,7 @@ function changeBackground() {
 	});
 }
 
+// home page animations
 function animateSlides() {
 	// selectors
 	const slides = document.querySelectorAll('.slide');
@@ -167,6 +169,7 @@ function animateSlides() {
 	});
 }
 
+// fashion page animations
 function detailAnimation() {
 	controller = new ScrollMagic.Controller();
 	const slides = document.querySelectorAll('.detail-slide');
@@ -198,6 +201,44 @@ function detailAnimation() {
 	});
 }
 
+// mountain page animations
+function animateImages() {
+	controller = new ScrollMagic.Controller();
+	const slideTimeline = gsap.timeline({
+		defaults: { duration: 1, ease: 'power2.inOut' },
+	});
+	const mountainText = document.querySelector('.mountain-text h1');
+	const mountainImg = document.querySelector('.mountain-img');
+	const mountainText2 = document.querySelector('.mountain-text p');
+
+	slideTimeline.fromTo(mountainText, { opacity: '0' }, { opacity: '1' });
+	slideTimeline.fromTo(mountainImg, { opacity: '0' }, { opacity: '1' }, '-=.4');
+	slideTimeline.fromTo(
+		mountainText2,
+		{ opacity: '0' },
+		{ opacity: '1' },
+		'-=.8',
+	);
+
+	const mountainTimeline = gsap.timeline({
+		defaults: { duration: 1, ease: 'power2.inOut' },
+	});
+	const imgs = document.querySelectorAll('.mountain-grid-img img');
+	const revealImgs = document.querySelectorAll('.reveal-mountain-img');
+
+	mountainTimeline.fromTo(revealImgs, { y: '0%' }, { y: '100%' });
+	mountainTimeline.fromTo(imgs, { scale: '0.5' }, { scale: '1' }, '-=2');
+
+	mountainScene = new ScrollMagic.Scene({
+		triggerElement: revealImgs,
+		imgs,
+		triggerHook: 0.7,
+		reverse: false,
+	})
+		.setTween(mountainTimeline)
+		.addTo(controller);
+}
+
 barba.init({
 	views: [
 		{
@@ -219,6 +260,12 @@ barba.init({
 			beforeLeave() {
 				controller.destroy();
 				detailScene.destroy();
+			},
+		},
+		{
+			namespace: 'mountain',
+			beforeEnter() {
+				animateImages();
 			},
 		},
 	],

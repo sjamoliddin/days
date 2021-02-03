@@ -419,11 +419,11 @@ body::-webkit-scrollbar-thumb {
 	overflow: hidden;
 }
 
-/* .reveal-mountain-img {
+.reveal-mountain-img {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
 	background-color: #17181a;
-} */
+}
