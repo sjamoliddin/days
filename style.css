@@ -324,3 +324,106 @@ body::-webkit-scrollbar-thumb {
 	font-size: 15rem;
 	opacity: 0.1;
 }
+
+/* ===== Mountain Page ===== */
+
+.mountain1,
+.mountain2 {
+	width: 75%;
+	height: 90vh;
+	margin: 1rem auto 5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
+.mountain-text {
+	flex: 1;
+	flex-basis: 35rem;
+	position: relative;
+}
+
+.mountain-text h1,
+.mountain2-text h1 {
+	font-size: 5.5rem;
+	padding: 2rem 0;
+	color: rgb(55, 109, 71);
+}
+
+.mountain-text p {
+	font-size: 1.4rem;
+	line-height: 1.5;
+	padding: 1rem 1rem 0 0;
+	margin-bottom: 5rem;
+}
+
+.mountain-img {
+	flex: 1;
+	flex-basis: 30rem;
+	position: relative;
+	overflow: hidden;
+}
+
+.mountain-img img,
+.mountain-grid-img img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	transition: all 1.5s ease-in-out;
+}
+
+.mountain-grid-img img {
+	object-fit: cover;
+}
+
+.mountain-img img:hover,
+.mountain-grid-img img:hover {
+	transform: scale(1.2);
+}
+
+.mountain2 {
+	flex-direction: column;
+	height: 100%;
+	margin-top: 0;
+}
+
+.mountain-grid-img {
+	display: grid;
+	grid-template-columns: repeat(5, minmax(4rem, 1fr));
+	grid-auto-rows: 25rem;
+	grid-auto-flow: dense;
+	grid-gap: 10px;
+	overflow: hidden;
+	position: relative;
+}
+
+.vertical {
+	grid-column: 1 / -1;
+	grid-row: 1 / span 1;
+}
+
+.horizontal {
+	grid-column: 1 / 3;
+	grid-row: 2 / 3;
+}
+
+.square {
+	grid-column: 3 / -1;
+	grid-row: 2 / 3;
+}
+
+.vertical,
+.horizontal.square {
+	position: relative;
+	overflow: hidden;
+}
+
+/* .reveal-mountain-img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #17181a;
+} */
